@@ -725,6 +725,7 @@ local function stringify_results(params, status, ...)
   params = params or {}
   if params.nocode == nil then params.nocode = true end
   if params.comment == nil then params.comment = 1 end
+  params.metatostring = false
 
   local t = {...}
   for i,v in pairs(t) do -- stringify each of the returned values
@@ -1005,6 +1006,7 @@ local function debugger_loop(sev, svars, sfile, sline)
         params = (type(params) == "table" and params or {})
         if params.nocode == nil then params.nocode = true end
         if params.sparse == nil then params.sparse = false end
+        params.metatostring = false
         -- take into account additional levels for the stack frames and data management
         if tonumber(params.maxlevel) then params.maxlevel = tonumber(params.maxlevel)+4 end
 
